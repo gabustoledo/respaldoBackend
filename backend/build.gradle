@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "org.sonarqube" version "3.1.1"
 }
 
 group = 'com.mingeso'
@@ -15,6 +16,22 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'com.google.code.gson:gson:2.8.6'
+	implementation 'junit:junit:4.12'
+	compile 'org.springframework.boot:spring-boot-starter-validation'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testRuntime ('org.springframework.boot:spring-boot-starter-test')
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "hpinochet_MINGESO-TINGESO-G1-E1"
+    property "sonar.organization", "hpinochet"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 test {

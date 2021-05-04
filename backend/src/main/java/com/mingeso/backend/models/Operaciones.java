@@ -12,7 +12,7 @@ public class Operaciones {
     public void setPrimerNumero(int primerNumero) {
         this.primerNumero = primerNumero;
     }
-
+    //Martes 4 Mayo   
     public int getSegundoNumero() {
         return segundoNumero;
     }

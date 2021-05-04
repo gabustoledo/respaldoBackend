@@ -36,4 +36,4 @@ public class Operaciones {
     public void resta(){
         resultado = primerNumero - segundoNumero;
     }
-}
+}//prueba

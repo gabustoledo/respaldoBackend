@@ -10,7 +10,7 @@ pipeline {
         stage('SonarQube'){
             steps{
                 dir("/var/lib/jenkins/workspace/backend/backend"){
-                    withSonarQubeEnv('sonarcloud_hpinochet'){
+                    withSonarQubeEnv('sonarcloud_backend_gabriel'){
                         sh 'chmod +x ./gradlew'
                         sh './gradlew sonarqube'
                     }    

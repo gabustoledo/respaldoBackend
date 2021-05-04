@@ -9,7 +9,7 @@ pipeline {
 
         stage('SonarQube'){
             steps{
-                dir("/var/lib/jenkins/workspace/G1E1/backend"){
+                dir("/var/lib/jenkins/workspace/backend/backend"){
                     withSonarQubeEnv('sonarcloud_hpinochet'){
                         sh 'chmod +x ./gradlew'
                         sh './gradlew sonarqube'
@@ -21,7 +21,7 @@ pipeline {
 	    stage('JUnit'){
 		    steps {
 			    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                 		dir("/var/lib/jenkins/workspace/G1E1/backend") {
+                 		dir("/var/lib/jenkins/workspace/backend/backend") {
 						    sh 'chmod +x ./gradlew'
                     		sh './gradlew test'
 					    }

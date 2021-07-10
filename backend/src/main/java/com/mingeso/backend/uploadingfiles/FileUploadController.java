@@ -3,7 +3,6 @@ package com.mingeso.backend.uploadingfiles;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -22,11 +21,12 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mingeso.backend.uploadingfiles.storage.StorageFileNotFoundException;
+import com.mingeso.backend.uploadingfiles.storage.StorageProperties;
 import com.mingeso.backend.uploadingfiles.storage.StorageService;
 
-@CrossOrigin
-@RestController
 
+@CrossOrigin
+@Controller
 public class FileUploadController {
 
 	private final StorageService storageService;
@@ -57,6 +57,7 @@ public class FileUploadController {
 	}
 
 	@PostMapping("/files")
+	@ResponseBody
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) {
 
@@ -64,7 +65,7 @@ public class FileUploadController {
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 
-		return "redirect:/";
+		return "Se entrego imagen"; 
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

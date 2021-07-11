@@ -63,8 +63,7 @@ public class FileUploadController {
 	}
 
 	@PostMapping("/files")
-	@ResponseBody
-	public Formulario handleFileUpload(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
+	public String handleFileUpload(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
 			@RequestParam("file3") MultipartFile file3, @RequestParam("file4") MultipartFile file4,
 			@RequestParam("file5") MultipartFile file5, @RequestParam("nombre") String nombre,
 			@RequestParam("correo") String correo, @RequestParam("diplomado") Integer diplomado,
@@ -77,18 +76,16 @@ public class FileUploadController {
 		formulario.setStatus(1);
 		formulario.setIdDiplomado(diplomado);
 		Formulario result = FormularioRepository.createFormulario(formulario);
-			
-		//storageService.store(file1,id,"Titulo_Profesional");
-		//storageService.store(file2,id,"Certificado_Nacimiento");
-		//storageService.store(file3,id,"Copia_cedula_Identidad");
-		//storageService.store(file4,id,"Curriculum_Vitae");
-		//storageService.store(file5,id,"Ficha de inscripcion");
-		storageService.store(file1);
 
-		
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file1.getOriginalFilename() + "!");
-		return formulario;
+		Integer id = result.getId();
+			
+		storageService.store(file1,id,"Titulo_Profesional.pdf");
+		storageService.store(file2,id,"Certificado_Nacimiento.pdf");
+		storageService.store(file3,id,"Copia_cedula_Identidad.pdf");
+		storageService.store(file4,id,"Curriculum_Vitae.pdf");
+		storageService.store(file5,id,"Ficha_de_inscripcion.pdf");
+
+		return "redirect:http://localhost:3000/PostulacionEnviada";
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

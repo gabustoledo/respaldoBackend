@@ -29,22 +29,21 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public void store(MultipartFile file1) {
+	public void store(MultipartFile file1, Integer id, String nombreArchivo) {
 		try {
 			if (file1.isEmpty()) {
 				throw new StorageException("Failed to store empty file.");
 			}
 
-
-			
 			// Se le asigna la ruta donde debe ser almacenado los pdf.
 			StorageProperties properties = new StorageProperties();
-			properties.setLocation(properties.getLocation() + "/chao");
+			properties.setLocation(properties.getLocation() + "/" + id);
 			this.rootLocation = Paths.get(properties.getLocation());
 			Files.createDirectories(rootLocation);
 
 			Path destinationFile = this.rootLocation.resolve(
-					Paths.get(file1.getOriginalFilename()))
+					//Paths.get(file1.getOriginalFilename()))
+					Paths.get(nombreArchivo))
 					.normalize().toAbsolutePath();
 			if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
 				// This is a security check

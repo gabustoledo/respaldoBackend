@@ -7,10 +7,59 @@
 
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/files">
+
 			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+				<tr><td>Nombre:</td><td><input type="text" name="nombre" /></td></tr>
+			</table>
+
+			<table>
+				<tr><td>Correo:</td><td><input type="text" name="correo" /></td></tr>
+			</table>
+
+			<table>
+				<tr><td>Diplomado:</td><td>
+					
+					<select name="diplomado">
+
+						<option value="1">Diplomado en Ciencia de Datos Aplicada</option>
+						
+						<option value="2">Diplomado en Ciberseguridad</option>
+						
+						<option value="3">Diplomado en Riesgo Operacional y Continuidad del Negocio en Proceso y Tics</option>
+
+						<option value="4">Diplomado en Control, Seguridad y Auditoria Computacional</option>
+
+						<option value="5">Diplomado en Peritaje Informático</option>
+						
+						</select>
+
+				</td></tr>
+			</table>
+
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file1" /></td></tr>
+			</table>
+
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file2" /></td></tr>
+			</table>
+
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file3" /></td></tr>
+			</table>
+
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file4" /></td></tr>
+			</table>
+
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file5" /></td></tr>
+			</table>
+
+			<table>	
 				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
 			</table>
+
 		</form>
 	</div>
 

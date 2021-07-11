@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-	private final Path rootLocation;
+	private Path rootLocation;
 
 	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
@@ -28,20 +29,29 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public void store(MultipartFile file) {
+	public void store(MultipartFile file1) {
 		try {
-			if (file.isEmpty()) {
+			if (file1.isEmpty()) {
 				throw new StorageException("Failed to store empty file.");
 			}
+
+
+			
+			// Se le asigna la ruta donde debe ser almacenado los pdf.
+			StorageProperties properties = new StorageProperties();
+			properties.setLocation(properties.getLocation() + "/chao");
+			this.rootLocation = Paths.get(properties.getLocation());
+			Files.createDirectories(rootLocation);
+
 			Path destinationFile = this.rootLocation.resolve(
-					Paths.get(file.getOriginalFilename()))
+					Paths.get(file1.getOriginalFilename()))
 					.normalize().toAbsolutePath();
 			if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
 				// This is a security check
 				throw new StorageException(
 						"Cannot store file outside current directory.");
 			}
-			try (InputStream inputStream = file.getInputStream()) {
+			try (InputStream inputStream = file1.getInputStream()) {
 				Files.copy(inputStream, destinationFile,
 					StandardCopyOption.REPLACE_EXISTING);
 			}

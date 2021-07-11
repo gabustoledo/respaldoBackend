@@ -3,6 +3,10 @@ package com.mingeso.backend.uploadingfiles;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+import com.mingeso.backend.models.Formulario;
+import com.mingeso.backend.repositories.FormularioRepository;
+
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -30,10 +34,12 @@ import com.mingeso.backend.uploadingfiles.storage.StorageService;
 public class FileUploadController {
 
 	private final StorageService storageService;
+	private final FormularioRepository FormularioRepository;
 
 	@Autowired
-	public FileUploadController(StorageService storageService) {
+	public FileUploadController(StorageService storageService, FormularioRepository formularioRepository) {
 		this.storageService = storageService;
+		this.FormularioRepository = formularioRepository;
 	}
 
 	@GetMapping("/files")
@@ -58,14 +64,31 @@ public class FileUploadController {
 
 	@PostMapping("/files")
 	@ResponseBody
-	public String handleFileUpload(@RequestParam("file") MultipartFile file,
+	public Formulario handleFileUpload(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
+			@RequestParam("file3") MultipartFile file3, @RequestParam("file4") MultipartFile file4,
+			@RequestParam("file5") MultipartFile file5, @RequestParam("nombre") String nombre,
+			@RequestParam("correo") String correo, @RequestParam("diplomado") Integer diplomado,
 			RedirectAttributes redirectAttributes) {
 
-		storageService.store(file);
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
+		// Se crea objeto formulario.
+		Formulario formulario = new Formulario();
+		formulario.setNombre(nombre);
+		formulario.setCorreo(correo);
+		formulario.setStatus(1);
+		formulario.setIdDiplomado(diplomado);
+		Formulario result = FormularioRepository.createFormulario(formulario);
+			
+		//storageService.store(file1,id,"Titulo_Profesional");
+		//storageService.store(file2,id,"Certificado_Nacimiento");
+		//storageService.store(file3,id,"Copia_cedula_Identidad");
+		//storageService.store(file4,id,"Curriculum_Vitae");
+		//storageService.store(file5,id,"Ficha de inscripcion");
+		storageService.store(file1);
 
-		return "Se entrego imagen"; 
+		
+		redirectAttributes.addFlashAttribute("message",
+				"You successfully uploaded " + file1.getOriginalFilename() + "!");
+		return formulario;
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

@@ -29,58 +29,60 @@
 	  <div class="container">
 				
 			<div>
+				<div class="container">
+					<h1>Postulacion</h1>
+				</div>
+				<br></br>
 				<form method="POST" enctype="multipart/form-data" action="/files">
 
-					<table>
-						<tr><td>Nombre:</td><td><input type="text" name="nombre" /></td></tr>
-					</table>
+					<div class="mb-3">
+						<label for="exampleFormControlInput1" class="form-label">Nombre</label>
+						<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre y Apellido" name="nombre" >
+					</div>
 
-					<table>
-						<tr><td>Correo:</td><td><input type="text" name="correo" /></td></tr>
-					</table>
+					<div class="mb-3">
+						<label for="exampleFormControlInput1" class="form-label">Correo</label>
+						<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="correo" >
+					</div>
 
-					<table>
-						<tr><td>Diplomado:</td><td>
-							
-							<select name="diplomado">
+					<div class="mb-3">
+						<label for="exampleFormControlInput1" class="form-label">Diplomado</label>
+						<select class="form-select" aria-label="Default select example" name="diplomado">
+							<option value="1">Diplomado en Ciencia de Datos Aplicada</option>
+							<option value="2">Diplomado en Ciberseguridad</option>
+							<option value="3">Diplomado en Riesgo Operacional y Continuidad del Negocio en Proceso y Tics</option>
+							<option value="4">Diplomado en Control, Seguridad y Auditoria Computacional</option>
+							<option value="5">Diplomado en Peritaje Informático</option>
+						</select>
+					</div>
 
-								<option value="1">Diplomado en Ciencia de Datos Aplicada</option>
-								
-								<option value="2">Diplomado en Ciberseguridad</option>
-								
-								<option value="3">Diplomado en Riesgo Operacional y Continuidad del Negocio en Proceso y Tics</option>
+					<div class="mb-3">
+						<label for="formFile" class="form-label">Titulo Profesional:</label>
+						<input class="form-control" type="file" id="formFile" name="file1">
+					</div>
 
-								<option value="4">Diplomado en Control, Seguridad y Auditoria Computacional</option>
+					<div class="mb-3">
+						<label for="formFile" class="form-label">Certificado Nacimiento:</label>
+						<input class="form-control" type="file" id="formFile" name="file2">
+					</div>
 
-								<option value="5">Diplomado en Peritaje Informático</option>
-								
-								</select>
+					<div class="mb-3">
+						<label for="formFile" class="form-label">Copia cedula de identidad:</label>
+						<input class="form-control" type="file" id="formFile" name="file3">
+					</div>
 
-						</td></tr>
-					</table>
+					<div class="mb-3">
+						<label for="formFile" class="form-label">Curriculum Vitae:</label>
+						<input class="form-control" type="file" id="formFile" name="file4">
+					</div>
 
-					<table>
-						<tr><td>Titulo Profesional:</td><td><input type="file" name="file1" /></td></tr>
-					</table>
-
-					<table>
-						<tr><td>Certificado Nacimiento:</td><td><input type="file" name="file2" /></td></tr>
-					</table>
-
-					<table>
-						<tr><td>Copia cedula de identidad:</td><td><input type="file" name="file3" /></td></tr>
-					</table>
-
-					<table>
-						<tr><td>Curriculum Vitae:</td><td><input type="file" name="file4" /></td></tr>
-					</table>
-
-					<table>
-						<tr><td>Ficha de inscripción:</td><td><input type="file" name="file5" /></td></tr>
-					</table>
+					<div class="mb-3">
+						<label for="formFile" class="form-label">Ficha de inscripción:</label>
+						<input class="form-control" type="file" id="formFile" name="file5">
+					</div>
 
 					<table>	
-						<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+						<input class="btn btn-primary" type="submit" value="Enviar">
 					</table>
 
 				</form>

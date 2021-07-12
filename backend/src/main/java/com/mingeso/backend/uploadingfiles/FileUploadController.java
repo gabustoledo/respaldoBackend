@@ -42,7 +42,7 @@ public class FileUploadController {
 		this.FormularioRepository = formularioRepository;
 	}
 
-	@GetMapping("/")
+	@GetMapping("/postulacion")
 	public String listUploadedFiles(Model model) throws IOException {
 
 		//model.addAttribute("files", storageService.loadAll().map(

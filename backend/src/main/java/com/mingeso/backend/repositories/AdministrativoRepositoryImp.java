@@ -94,9 +94,9 @@ public class AdministrativoRepositoryImp implements AdministrativoRepository {
     public List<Administrativo> login(Administrativo administrativo) {
         int existe = 0;
         try(Connection conn = sql2o.open()){
-            existe = conn.createQuery("select count(*) from administrativo where correo=:administrativoCorreo and pass=:administrativoPass;")
+            existe = conn.createQuery("select count(*) from administrativo where correo = :administrativoCorreo and pass = :administrativoContrasena;")
                 .addParameter("administrativoCorreo", administrativo.getCorreo())
-                .addParameter("administrativoPass", administrativo.getContrasena())
+                .addParameter("administrativoContrasena", administrativo.getContrasena())
                 .executeScalar(Integer.class);
 
             if(existe == 1){
